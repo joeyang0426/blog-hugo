@@ -1,0 +1,91 @@
+{{ define "content" -}}
+  <article class="post">
+    <!-- post-header -->
+    <header class="post-header">
+      <!--<h1 class="post-title">{{ .Title }}</h1>-->
+
+      <div class="post-meta">
+        <span class="post-time"> {{ .Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }} </span>
+        {{ with .Params.categories -}}
+          <div class="post-category">
+            {{ range . }}
+              <a href="{{ "categories" | relLangURL }}/{{ . | urlize }}/"> {{ . }} </a>
+            {{ end }}
+          </div>
+        {{- end }}
+        {{ if .Site.Params.moreMeta -}}
+          <span class="more-meta"> {{ T "wordCount" .WordCount }} </span>
+          <span class="more-meta"> {{ T "readingTime" .ReadingTime }} </span>
+        {{- end }}
+        {{ if and .Site.Params.busuanzi.enable .Site.Params.busuanzi.pagePV -}}
+        {{ $valueSpan := printf `<span id="busuanzi_value_page_pv"><img src="%s" alt="spinner.svg"/></span>` ("img/spinner.svg" | relURL) -}}
+        <span id="busuanzi_container_page_pv" class="more-meta"> {{ printf (T "pagePV") $valueSpan | safeHTML }} </span>
+        {{- end }}
+      </div>
+    </header>
+
+    <!-- TOC -->
+    {{ partial "post/toc.html" . }}
+
+    <!-- Outdated Info Warning -->
+    {{ partial "post/outdated-info-warning.html" . }}
+
+    <!-- Content -->
+    <div class="post-content">
+      {{ .Content }}
+    </div>
+
+    <!-- Copyright -->
+    {{ partial "post/copyright.html" . }}
+
+	<!-- Facebook like count and share button -->
+	{{ if .Site.Params.showFacebookLikeCount -}}
+	  <div class="fb-like" style="margin-left: 10px; margin-top: 4px;" data-href="{{ .Permalink }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="false" data-share="true"></div>
+	{{- end }}
+	
+    <!-- Reward -->
+    {{ partial "post/reward.html" . }}
+	
+    <footer class="post-footer">
+      {{ with .Params.tags -}}
+        <div class="post-tags">
+		  標籤：
+		  {{ $scratch := newScratch }}
+          {{ range . }}
+		    {{ $scratch.Set "tagName" . }}
+		    {{ if eq . "dotnet"}}
+          {{ $scratch.Set "tagName" ".NET" }}
+        {{ else if eq . "dotnet core"}}
+		      {{ $scratch.Set "tagName" ".NET Core" }}
+		    {{ else if eq . "csharp"}}
+		      {{ $scratch.Set "tagName" "C#" }}
+		    {{ end }}	
+            <a href="{{ "tags" | relLangURL }}/{{ . | urlize }}/">{{ $scratch.Get "tagName" }}</a>
+          {{ end }}
+        </div>
+      {{- end }}
+
+      <!-- Post Pagination -->
+      <nav class="post-nav">
+        {{ with .NextInSection }}
+		  <div>
+          <a class="prev" href="{{ .URL }}" style="float: none;">
+            <span class="next-text nav-mobile" style="display: inline-block;">{{ T "nextPost" }}</span>			
+            <i class="fas fa-arrow-circle-right"></i>			
+            <span class="next-text nav-default">{{ .Title }}</span>			
+          </a>
+		  </div>
+        {{- end }}
+		  <div>
+        {{ with .PrevInSection }}
+          <a class="prev" href="{{ .URL }}" style="float: none;">
+            <span class="prev-text nav-mobile" style="display: inline-block;">{{ T "prevPost" }}</span>	  
+            <i class="fas fa-arrow-circle-left"></i>
+            <span class="prev-text nav-default">{{ .Title }}</span>			
+          </a>
+		  </div>
+        {{- end }}
+      </nav>
+    </footer>
+  </article>
+{{- end }}
