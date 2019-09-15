@@ -8,6 +8,6 @@ theme = "maupassant-hugo"
 
 [params]
   author = "Joe Yang"
-  subtitle = "HI, MY NAME IS JOE YANG & I AM A Camera, Software Engineer"
+  subtitle = "HI, MY NAME IS Joe Yang & I AM A Camera, Software Engineer"
   keywords = "BSP, GPU, Android, RTOS, ThreadX, Camera system, Digital Image process"
   description = "專注在影像產品開發"
