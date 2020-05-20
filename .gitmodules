@@ -1,3 +1,15 @@
 [submodule "themes/maupassant-hugo"]
 	path = themes/maupassant-hugo
 	url = https://github.com/rujews/maupassant-hugo
+[submodule "themes/hugo-theme-even-more"]
+	path = themes/hugo-theme-even-more
+	url = https://github.com/huanlin/hugo-theme-even-more.git
+[submodule "theme/hugo-theme-even"]
+	path = theme/hugo-theme-even
+	url = https://github.com/olOwOlo/hugo-theme-even.git
+[submodule "themes/hugo-theme-even"]
+	path = themes/hugo-theme-even
+	url = https://github.com/olOwOlo/hugo-theme-even.git
+[submodule "themes/hugo-theme-even-networm"]
+	path = themes/hugo-theme-even-networm
+	url = https://github.com/networm/hugo-theme-even.git
