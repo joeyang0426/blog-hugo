@@ -18,7 +18,7 @@ defaultContentLanguage = "zh-tw"
 title = "Joe's Blog"
 theme = "hugo-tranquilpeak-theme"
 disqusShortname = "joeyang"
-# googleAnalytics = "UA-123-45"
+googleAnalytics = "UA-167754932-1"
 paginate = 7
 canonifyurls = true
 
